@@ -1,0 +1,51 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+compileJava {
+    //fix for the absent error messages
+    //https://stackoverflow.com/questions/43277097/how-to-show-full-compile-error-messages-info-in-checker-framework-with-line-numb#
+    System.setProperty("line.separator", "\n")
+
+    doFirst {
+        options.compilerArgs = [
+                '-processor', 'org.checkerframework.checker.nullness.NullnessChecker',
+                '-Xmaxerrs', '100',
+                '-Xmaxwarns', '100',
+                '-Awarns',      // -Awarns turns Checker Framework errors into warnings
+                '-AcheckPurityAnnotations',
+                '-Adetailedmsgtext',
+//                '-AprintVerboseGenerics',
+//                '-Afilenames',
+                '-processorpath', "${configurations.checkerFrameworkCheckerJar.asPath}",
+                "-Xbootclasspath/p:${configurations.checkerFrameworkAnnotatedJDK.asPath}"
+        ]
+    }
+}
+
+configurations {
+    checkerFrameworkCheckerJar {
+        description = 'the Checker Framework, including the Type Annotations compiler'
+    }
+
+    checkerFrameworkAnnotatedJDK {
+        description = 'a copy of JDK classes with Checker Framework type qualifers inserted'
+    }
+}
+
+dependencies {
+
+    ext.checkerFrameworkVersion = '2.5.4'
+    checkerFrameworkAnnotatedJDK "org.checkerframework:jdk8:${checkerFrameworkVersion}"
+    checkerFrameworkCheckerJar "org.checkerframework:checker:${checkerFrameworkVersion}"
+    implementation "org.checkerframework:checker-qual:${checkerFrameworkVersion}"
+
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+//    compile 'org.projectlombok:lombok:1.16.20'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
