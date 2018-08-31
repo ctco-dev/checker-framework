@@ -15,7 +15,6 @@ public class Variables {
         @NonNull Object no;
 
         no = o;
-
     }
 
     @SuppressWarnings("nullness")
