@@ -2,27 +2,30 @@ package lv.ctco.checker;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-@SuppressWarnings("nullness")
 public class Variables {
 
-    {
+    @SuppressWarnings("nullness")
+    void nullAssignment() {
         @NonNull Object obj = null;
+    }
 
+    @SuppressWarnings("nullness")
+    void nullAssignmentViaReference() {
         Object o = null;
-        @NonNull  Object no;
+        @NonNull Object no;
 
         no = o;
 
-        /*-----------------------------------------------*/
+    }
 
-        String s2 = null;
+    @SuppressWarnings("nullness")
+    void missingCheck() {
+        String s2 = "";
         s2.hashCode();
+    }
 
-        @NonNull String s;
-        s = s2; //failed to catch
-
-        //*---------------------------------------------*/
-
+    @SuppressWarnings("nullness")
+    void arrays() {
         String @NonNull [] messages = new String[2];
         messages[0] = null;
     }

@@ -1,14 +1,16 @@
 package lv.ctco.checker;
 
-//@SuppressWarnings("nullness")
 public class RedundantChecks {
 
-    //non-null by default
+    @SuppressWarnings("nullness")
     void doStuff(String s) {
+
+        //should get warning
         if (s == null) {
             return;
         }
 
+        //should get warning even with s marked as @Nullable
         String s2 = s != null ? s.replace("a", "b") : null;
     }
 }
