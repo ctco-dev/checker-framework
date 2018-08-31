@@ -1,6 +1,6 @@
 # About
 
-This project contains use-case where Checker Framework's Nullness check may come in handy.   
+This project contains use-cases where Checker Framework's Nullness check may come in handy.   
 
 
 # Links
