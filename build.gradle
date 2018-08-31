@@ -19,6 +19,7 @@ compileJava {
                 '-Awarns',      // -Awarns turns Checker Framework errors into warnings
                 '-AcheckPurityAnnotations',
                 '-Adetailedmsgtext',
+                '-Alint=redundantNullComparison',
 //                '-AprintVerboseGenerics',
 //                '-Afilenames',
                 '-processorpath', "${configurations.checkerFrameworkCheckerJar.asPath}",
