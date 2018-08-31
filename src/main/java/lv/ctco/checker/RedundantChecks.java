@@ -1,6 +1,6 @@
 package lv.ctco.checker;
 
-@SuppressWarnings("nullness")
+//@SuppressWarnings("nullness")
 public class RedundantChecks {
 
     //non-null by default
@@ -8,5 +8,7 @@ public class RedundantChecks {
         if (s == null) {
             return;
         }
+
+        String s2 = s != null ? s.replace("a", "b") : null;
     }
 }

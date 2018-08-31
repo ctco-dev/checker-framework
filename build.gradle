@@ -18,7 +18,6 @@ compileJava {
                 '-Xmaxwarns', '100',
                 '-Awarns',      // -Awarns turns Checker Framework errors into warnings
                 '-AcheckPurityAnnotations',
-                '-Adetailedmsgtext',
                 '-Alint=redundantNullComparison',
 //                '-AprintVerboseGenerics',
 //                '-Afilenames',
